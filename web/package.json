@@ -4,9 +4,14 @@
   "description": "desenvolvimento de um gerenciador de tarefa",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "Rodolfo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.11",
+    "nodemon": "^2.0.14"
+  }
 }

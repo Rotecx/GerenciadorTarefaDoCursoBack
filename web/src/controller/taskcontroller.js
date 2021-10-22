@@ -8,10 +8,46 @@ class TaskController {
         const task = new TaskModel(req.body)
         // salva no banco de dados
         await task
-        .save() // metodo utilizado para salvar os daods que vem do front no banco  de dados
-        .then(response => {return res.status(200).json(response)}) // resposta positiva , caso o salvamento for bem sucedido
-        .catch(erro => {return res.status(500).json(erro)}); // tratamento de erro, caso for mal sucedido
+        .save() 
+        .then(response => {return res.status(200).json(response)}) 
+        .catch(erro => {return res.status(500).json(erro)}); 
     }
+    // metodo utilizado para salvar os daods que vem do front no banco  de dados
+    // resposta positiva , caso o salvamento for bem sucedido
+    // tratamento de erro, caso for mal sucedido
+
+    async update(req, res){
     
+    
+        await TaskModel
+        .findByIdAndUpdate({'_id':req.params.id}, req.body, {new: true})
+        .then(response => {return res.status(200).json(response)}) 
+        .catch(erro => {return res.status(500).json(erro)}); 
+    
+    }
+
+    /*async read(req, res){
+    
+    
+        await TaskModel
+        .read({'_id':req.params.id}, req.body, {new: true})
+        .then(response => {return res.status(200).json(response)}) 
+        .catch(erro => {return res.status(500).json(erro)}); 
+    
+    }
+
+    async delete(req, res){
+    
+    
+        await TaskModel
+        .findByIdAndDelete({'_id':req.params.id}, req.body, {new: true})
+        .then(response => {return res.status(200).json(response)}) 
+        .catch(erro => {return res.status(500).json(erro)}); 
+    
+    }*/
 }
+
+
+
+
 module.exports = new TaskController();
