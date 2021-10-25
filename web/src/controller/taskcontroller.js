@@ -26,12 +26,27 @@ class TaskController {
     
     }
 
-    /*async read(req, res){
+    async readAll(req, res){
     
     
         await TaskModel
-        .read({'_id':req.params.id}, req.body, {new: true})
+        .find({macadress: {'$in':req.body.macadress}})
+        .sort('when')
         .then(response => {return res.status(200).json(response)}) 
+        .catch(erro => {return res.status(500).json(erro)}); 
+    
+    }
+
+    async readById(req, res){
+    
+        await TaskModel
+        .findById(req.params.id)
+        .then(response => {
+        if(response)
+            return res.status(200).json(response) 
+        else
+            return res.status(404).json({error : 'Tarefa não encontrada'})
+        })    
         .catch(erro => {return res.status(500).json(erro)}); 
     
     }
@@ -40,11 +55,11 @@ class TaskController {
     
     
         await TaskModel
-        .findByIdAndDelete({'_id':req.params.id}, req.body, {new: true})
+        .deleteOne({'_id':req.params.id})
         .then(response => {return res.status(200).json(response)}) 
         .catch(erro => {return res.status(500).json(erro)}); 
     
-    }*/
+    }
 }
 
 
